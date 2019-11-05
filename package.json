@@ -4,9 +4,9 @@
   "description": "Strongly Typed Eventemitter Module For Nestjs Framework",
   "main": "index.js",
   "scripts": {
-    "test": "jest --notify --config=jest.json",
-    "test:watch": "jest --watch --config=jest.json",
-    "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage",
+    "test": "jest --notify --passWithNoTests",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --coverageDirectory=coverage",
     "build": "build.sh",
     "npm:publish": "cd lib && npm publish",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
