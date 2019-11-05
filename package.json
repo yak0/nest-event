@@ -7,7 +7,7 @@
     "test": "jest --notify --config=jest.json",
     "test:watch": "jest --watch --config=jest.json",
     "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage",
-    "build": "build.sh",
+    "build": "./build.sh",
     "npm:publish": "cd lib && npm publish",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json"
