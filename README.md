@@ -9,7 +9,7 @@
   <a href="https://travis-ci.org/yak0/nest-event"><img
       src="https://api.travis-ci.org/yak0/nest-event.svg?branch=master" alt="Travis" /></a>
 </p>
-  <p >Event handler for <a href="http://nodejs.org" target="_blank">Nest.js</a> framework with decorators </p>
+  <p >Event handler for <a href="http://nestjs.com" target="_blank">Nest.js</a> framework with decorators </p>
 
 ### Features
 - Communicate between modules without import
