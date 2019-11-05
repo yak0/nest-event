@@ -6,8 +6,8 @@
       alt="Package License" /></a>
   <a href="https://www.npmjs.com/~nest-event" target="_blank"><img
       src="https://img.shields.io/npm/dm/nest-event.svg" alt="NPM Downloads" /></a>
-  <a href="https://travis-ci.org/yak0/nest-event"><img
-      src="https://api.travis-ci.org/yak0/nest-event.svg?branch=master" alt="Travis" /></a>
+  <a href="https://travis-ci.org/javascript-dragons/nest-event"><img
+      src="https://api.travis-ci.org/javascript-dragons/nest-event.svg?branch=master" alt="Travis" /></a>
 </p>
   <p >Event handler for <a href="http://nestjs.com" target="_blank">Nest.js</a> framework with decorators </p>
 

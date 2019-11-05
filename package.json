@@ -1,6 +1,6 @@
 {
   "name": "nest-event",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Event handler for Nest.js framework with decorators",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yak0/nest-event.git"
+    "url": "git+https://github.com/javascript-dragons/nest-event.git"
   },
   "keywords": [
     "nestjs",
@@ -25,9 +25,9 @@
   "author": "Yakup Cilesiz <yakupcilesiz@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yak0/nest-event/issues"
+    "url": "https://github.com/javascript-dragons/nest-event/issues"
   },
-  "homepage": "https://github.com/yak0/nest-event#readme",
+  "homepage": "https://github.com/javascript-dragons/nest-event#readme",
   "dependencies": {
     "@nestjs-plus/discovery": "^2.0.2",
     "@nestjs/common": "^6.7.2",
