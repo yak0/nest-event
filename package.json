@@ -1,13 +1,13 @@
 {
   "name": "nest-event",
-  "version": "1.0.0",
-  "description": "Strongly Typed Eventemitter Module For Nestjs Framework",
+  "version": "1.0.2",
+  "description": "Event handler for Nest.js framework with decorators",
   "main": "index.js",
   "scripts": {
     "test": "jest --notify --passWithNoTests",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --coverageDirectory=coverage",
-    "build": "build.sh",
+    "build": "./build.sh",
     "npm:publish": "cd lib && npm publish",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json"
