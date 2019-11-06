@@ -1,7 +1,7 @@
 
 import { NEST_EVENT_ON, NEST_EVENT_EMITTER, NEST_EVENT_FROM } from './constants';
 import { EventEmitter } from 'events';
-import { DiscoveryService, DiscoveredClassWithMeta, DiscoveredMethodWithMeta } from '@nestjs-plus/discovery';
+import { DiscoveryService, DiscoveredClassWithMeta, DiscoveredMethodWithMeta, DiscoveredClass } from '@nestjs-plus/discovery';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -57,8 +57,10 @@ export class NestEvent {
 
     methods.forEach((m: DiscoveredMethodWithMeta<string>) => {
       const eventName: string = m.meta;
-      const methodKey: string = `${m.discoveredMethod.parentClass.name}.${m.discoveredMethod.methodName}`;
-      const method: any = m.discoveredMethod.parentClass.instance[m.discoveredMethod.methodName];
+      const discoveredClass: DiscoveredClass = m.discoveredMethod.parentClass;
+      const methodName: string = m.discoveredMethod.methodName;
+      const methodKey: string = `${discoveredClass.name}.${methodName}`;
+      const method: any = discoveredClass.instance[methodName].bind(discoveredClass.instance);
       if (methodEmitters.has(methodKey)) {
         const emiterInstance: EventEmitter | undefined = methodEmitters.get(methodKey);
         if (emiterInstance) {
