@@ -11,9 +11,23 @@ export class NestEventEmitter {
   ) {}
 
   public emit(event: string | symbol, ...args: any[]) {
-    const eventEmitter: EventEmitter | undefined = this.emitter();
+    const eventEmitter: EventEmitter = this.emitter();
     if (eventEmitter) {
       eventEmitter.emit(event, ...args);
+    }
+  }
+
+  public on(event: string | symbol, listener: (...args: any[]) => void) {
+    const eventEmitter: EventEmitter = this.emitter();
+    if (eventEmitter) {
+      eventEmitter.on(event, listener);
+    }
+  }
+
+  public off(event: string | symbol, listener: (...args: any[]) => void) {
+    const eventEmitter: EventEmitter = this.emitter();
+    if (eventEmitter) {
+      eventEmitter.off(event, listener);
     }
   }
 
