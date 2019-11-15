@@ -109,6 +109,19 @@ If you provide multiple emitters you can select one with:
 ```ts
  this.nestEventEmitter.emitter('my-emitter').emit('user-created', user);
 ```
+
+Also, you can get your emitters as  <a href="https://github.com/bterlson/strict-event-emitter-types">StrictEventEmitter</a>
+
+```ts
+// define your events
+ interface Events {
+   request: (request: Request, response: Response) => void;
+   done: void;
+ }
+ this.nestEventEmitter.strictEmitter<Events>().emit('done');
+ //or
+  this.nestEventEmitter.strictEmitter<Events>('my-emitter').emit('done');
+```
 ### Future Goals
 
 * Add tests;

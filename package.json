@@ -1,6 +1,6 @@
 {
   "name": "nest-event",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Event handling with decorators for NestJS Framework",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,8 @@
     "@nestjs-plus/discovery": "^2.0.2",
     "@nestjs/common": "^6.7.2",
     "@nestjs/core": "^6.7.2",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "strict-event-emitter-types": "^2.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.21",

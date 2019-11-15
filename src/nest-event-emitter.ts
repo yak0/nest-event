@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { NestEvent } from './nest-event';
 import { InjectNestEvent } from './decorators';
 import { EventEmitter } from 'events';
+import StrictEventEmitter from 'strict-event-emitter-types/types/src';
 
 // tslint:disable-next-line: semicolon
 Injectable()
@@ -39,4 +40,7 @@ export class NestEventEmitter {
     return this.nestEvent.getEmitters().get(emitter);
   }
 
+  public strictEmitter<T>(emitter: string = 'default'): StrictEventEmitter<EventEmitter, T>  {
+    return this.emitter(emitter);
+  }
 }
