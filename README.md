@@ -9,7 +9,7 @@
   <a href="https://travis-ci.org/javascript-dragons/nest-event"><img
       src="https://api.travis-ci.org/javascript-dragons/nest-event.svg?branch=master" alt="Travis" /></a>
 </p>
-  <p >Event handler for <a href="http://nestjs.com" target="_blank">Nest.js</a> framework with decorators </p>
+  <p >Event handler for <a href="https://nestjs.com" target="_blank">Nest.js</a> framework with decorators </p>
 
 ### Features
 - Communicate between modules without import
@@ -22,7 +22,7 @@
 $ npm i --save nest-event
 ```
 ### Usage
-Import `NestEventModule` into your root module _(`AppModule`)_
+Import `NestEventsModule` into your root module _(`AppModule`)_
 
 ```ts
 // app.module.ts
@@ -30,32 +30,66 @@ Import `NestEventModule` into your root module _(`AppModule`)_
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { NestEventModule } from 'nest-event';
+import { NestEventsModule } from 'nest-event';
 @Module({
-  imports: [NestEventModule],
+  imports: [NestEventsModule],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
 ```
 
-Nest Event is coming with an internal event emitter. If you provide one without a name, the module do not create the internal emitter. Also, you can use any instance with extended from `EventEmitter`
+Nest Event is coming with an internal event emitter. If you provide one without a name, the module do not create the internal emitter. Also, you can use any instance with extended from `IEventEmitter`
 
 To provide an emitter use `@Emitter` decorator.
 
 ```ts
-import { EventEmitter } from 'events';
-import { Injectable } from '@nestjs/common';
-import { Emitter } from './nest-event';
+import { Emitter, DefaultEventEmitter } from 'nest-event';
 
 @Emitter()
-export class MyEventEmitter extends EventEmitter {}
+export class MyEventEmitter extends DefaultEventEmitter {}
 ```
+
 You can provide multiple emitters with passing a name.
+
 ```ts
+import { WebSocket } from 'ws';
+
 @Emitter('ws-emitter')
-export class WebsocketClient extends Websocket {}
+class WebsocketClient<T = any> extends WebSocket implements IEventEmitter<T, boolean> {}
 ```
+
+You can also implement async Emitters
+
+```ts
+import { SNS } from '@aws-sdk/client-sns';
+import { Emitter, IEventEmitter } from 'nest-event';
+
+@Emitter('cloud-emitter')
+export class CloudEventEmitter<T> implements IEventEmitter<T, Promise<void>> {
+  constructor(private readonly sns: SNS) {
+  }
+
+  async emit(event: string | symbol, ...args: T[]): Promise<void> {
+    await this.sns.publishBatch({
+      TopicArn: 'arn:aws:sns:us-east-1:123456789012:MyTopic',
+      PublishBatchRequestEntries: args.map(message => ({
+        Id: '<generated id>',
+        Message: JSON.stringify(message),
+      })),
+    });
+  }
+
+  on(event: string | symbol, listener: (...args: T[]) => void): this {
+    throw new Error('Method not implemented.');
+  }
+
+  off(event: string | symbol, listener: (...args: T[]) => void): this {
+    throw new Error('Method not implemented.');
+  }
+}
+```
+
 
 #### Event Handler
 
@@ -63,7 +97,7 @@ To adding a listener for an event you can use `@On` decorator.
 
 ```ts
 import { Injectable } from '@nestjs/common';
-import { On } from './nest-event';
+import { On } from 'nest-event';
 import { User } from './interfaces';
 
 @Injectable()
@@ -86,46 +120,27 @@ If you have multiple emitters you can separate the handlers with `@From` decorat
 ```
 #### Event Emitter
 
-To access your emitters in different modules, controllers etc. You can use  `NestEventEmitter`
+To access your emitters in different modules, controllers etc. You can use  `NestEventsEmitter`
 
 ```ts
-import { NestEventEmitter } from './nest-event';
+import { NestEventsEmitter } from 'nest-event';
 
 @Controller('user')
 export class UserController {
-  constructor(
-    private readonly nestEventEmitter: NestEventEmitter,
-    ) {}
+  constructor(private readonly events: NestEventsEmitter) {}
 
   @Post('signup')
   signup() {
     // ...
-    this.nestEventEmitter.emit('user-created', user);
+    this.events.emit('user-created', user);
   }
 }
 ```
 If you provide multiple emitters you can select one with:
 
 ```ts
- this.nestEventEmitter.emitter('my-emitter').emit('user-created', user);
+ this.events.emitter('my-emitter').emit('user-created', user);
 ```
-
-Also, you can get your emitters as  <a href="https://github.com/bterlson/strict-event-emitter-types">StrictEventEmitter</a>
-
-```ts
-// define your events
- interface Events {
-   request: (request: Request, response: Response) => void;
-   done: void;
- }
- this.nestEventEmitter.strictEmitter<Events>().emit('done');
- //or
-  this.nestEventEmitter.strictEmitter<Events>('my-emitter').emit('done');
-```
-### Future Goals
-
-* Add tests;
-
 
 ### Contributing
 
