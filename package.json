@@ -1,7 +1,7 @@
 {
-  "name": "nest-event",
+  "name": "nest-events",
   "version": "1.0.8",
-  "description": "Event handling with decorators for NestJS Framework",
+  "description": "Event handling with decorators for NestJS Framework and support to async events",
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/javascript-dragons/nest-event.git"
+    "url": "git+https://github.com/onhate/nest-events.git"
   },
   "keywords": [
     "nest",
@@ -24,12 +24,12 @@
     "modules",
     "nest"
   ],
-  "author": "Yakup Cilesiz <yakupcilesiz@gmail.com>",
+  "author": "Marcelo Luiz Onhate <onhate@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/javascript-dragons/nest-event/issues"
+    "url": "https://github.com/onhate/nest-events/issues"
   },
-  "homepage": "https://github.com/javascript-dragons/nest-event#readme",
+  "homepage": "https://github.com/onhate/nest-events#readme",
   "dependencies": {
     "@golevelup/nestjs-discovery": "^3.0.0",
     "@nestjs/common": "^9.4.0",
