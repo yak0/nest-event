@@ -22,7 +22,7 @@
 $ npm i --save nest-event
 ```
 ### Usage
-Import `NestEventModule` into your root module _(`AppModule`)_
+Import `NestEventsModule` into your root module _(`AppModule`)_
 
 ```ts
 // app.module.ts
@@ -30,9 +30,9 @@ Import `NestEventModule` into your root module _(`AppModule`)_
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { NestEventModule } from 'nest-event';
+import { NestEventsModule } from 'nest-event';
 @Module({
-  imports: [NestEventModule],
+  imports: [NestEventsModule],
   controllers: [AppController],
   providers: [AppService],
 })
@@ -120,14 +120,14 @@ If you have multiple emitters you can separate the handlers with `@From` decorat
 ```
 #### Event Emitter
 
-To access your emitters in different modules, controllers etc. You can use  `NestEventEmitter`
+To access your emitters in different modules, controllers etc. You can use  `NestEventsEmitter`
 
 ```ts
-import { NestEventEmitter } from 'nest-event';
+import { NestEventsEmitter } from 'nest-event';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly events: NestEventEmitter) {}
+  constructor(private readonly events: NestEventsEmitter) {}
 
   @Post('signup')
   signup() {
