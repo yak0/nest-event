@@ -1,6 +1,6 @@
 {
   "name": "nest-events",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Event handling with decorators for NestJS Framework and support to async events",
   "main": "index.js",
   "scripts": {
