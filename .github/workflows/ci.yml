@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: "**"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Cache node_modules
+        id: cache
+        uses: actions/cache@master
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.OS }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: ESlint
+        run: npm run lint
+
+      - name: Unit Tests
+        run: npm run test:coverage
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+          NO_COLOR: true

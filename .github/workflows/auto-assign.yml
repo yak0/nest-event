@@ -1,0 +1,14 @@
+name: Auto Assign PR to Author
+
+on:
+  pull_request:
+    types: [ opened ]
+
+jobs:
+  add-assignee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kentaro-m/auto-assign-action@v1.1.2
+        with:
+          configuration-path: .github/auto-assign.yml
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
