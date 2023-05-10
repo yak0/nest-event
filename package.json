@@ -34,12 +34,10 @@
     "@golevelup/nestjs-discovery": "^3.0.0",
     "@nestjs/common": "^9.4.0",
     "@nestjs/core": "^9.4.0",
-    "reflect-metadata": "^0.1.13",
-    "ws": "^8.13.0"
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@nestjs/testing": "^9.4.0",
-    "@types/ws": "^8.5.4",
     "@types/jest": "^29.5.1",
     "@types/node": "^18.16.7",
     "jest": "^29.5.0",
